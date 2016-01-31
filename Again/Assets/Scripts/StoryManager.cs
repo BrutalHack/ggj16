@@ -40,6 +40,7 @@ public class StoryManager : MonoBehaviour {
 		background.sprite = storySprites [count];
 		text.text = storyTexts [count];
 		if (storyAudio [count] != null) {
+			this.audio.Stop();
 			this.audio.PlayOneShot (storyAudio [count]);
 		}
 	}
