@@ -11,16 +11,19 @@ public class StoryManager : MonoBehaviour {
 	public Text text;
 	public Sprite[] storySprites;
 	public string[] storyTexts;
+	public AudioClip[] storyAudio;
 	private int count = 0;
 	private bool open = false;
 	private string openTrigger = "Open";
 	private string closeTrigger = "Close";
 
 	private Animator animator;
+	private AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
 		animator = this.gameObject.GetComponent<Animator> ();
+		audio = this.gameObject.GetComponent<AudioSource> ();
 		UpdateStory (count);
 	}
 	
@@ -36,6 +39,9 @@ public class StoryManager : MonoBehaviour {
 	private void UpdateStory(int count){
 		background.sprite = storySprites [count];
 		text.text = storyTexts [count];
+		if (storyAudio [count] != null) {
+			this.audio.PlayOneShot (storyAudio [count]);
+		}
 	}
 
 	public void Closed(){
