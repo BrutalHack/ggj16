@@ -11,11 +11,18 @@ public class GameControl : MonoBehaviour {
     {
         demo = m_demo;
     }
+    void OnGUI()
+    {
+        if (demo)
+        {
+            GUILayout.Label("Game developed for Smartphones with Accelerometer and Swipe Input");
+        }
+    }
     void Update () {
         elapsed += Time.deltaTime;
         if (elapsed > duration)
         {
-            SceneManager.LoadScene("opening");
+            SceneManager.LoadScene("ending");
         }
 	}
     public void Fail()
