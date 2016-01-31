@@ -5,7 +5,8 @@ using System.Collections;
 [RequireComponent (typeof (Animator))]
 public class StoryManager : MonoBehaviour {
 
-	public Button button;
+	public bool opening = true;
+	public TransitionManager transitionManager;
 	public Image background;
 	public Text text;
 	public Sprite[] storySprites;
@@ -20,7 +21,6 @@ public class StoryManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = this.gameObject.GetComponent<Animator> ();
-		button.gameObject.SetActive (false);
 		UpdateStory (count);
 	}
 	
@@ -31,7 +31,6 @@ public class StoryManager : MonoBehaviour {
 
 	public void Opened(){
 		open = true;
-		button.gameObject.SetActive (true);
 	}
 
 	private void UpdateStory(int count){
@@ -47,13 +46,15 @@ public class StoryManager : MonoBehaviour {
 	public void Next(){
 		if(open){
 			open = false;
-			button.gameObject.SetActive (false);
 			count++;
 			if(count < storySprites.Length){
 				animator.SetTrigger (closeTrigger);
 			}else{
-				//TODO Change Scene to GameScene.
-				Debug.LogWarning("Next Scene!");
+				if (opening) {
+					transitionManager.StartGame ();
+				} else {
+					transitionManager.StartOpening ();
+				}
 			}
 		}
 	}
