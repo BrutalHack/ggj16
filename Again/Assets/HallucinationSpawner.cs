@@ -25,13 +25,13 @@ public class HallucinationSpawner : MonoBehaviour {
         {
             currentHallu = halluTime;
         }
-        halluRenderer.enabled = true;
+        halluRenderer.gameObject.SetActive(true);
         halluRenderer.sprite = hallus[Random.Range(0, hallus.Length)];
     }
-    public void killHallu()
-    {
+    public void killHallu(Vector2 direction)
+    {   
         halluActive = false;
-        halluRenderer.enabled = false;
+        halluRenderer.gameObject.SetActive(false);
     }
 	void Update () {
         if (!halluActive)
@@ -50,7 +50,7 @@ public class HallucinationSpawner : MonoBehaviour {
             {
                 if (GameControl.demo)
                 {
-                    killHallu();
+                    killHallu(Vector2.up);
                 }
                 else
                 {
