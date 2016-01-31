@@ -17,7 +17,7 @@ public class ObstacleSpawner : MonoBehaviour {
             wait = delay;
            GameObject newObj= (GameObject)Instantiate(prefab, Vector3.zero, Quaternion.identity);
            newObj.transform.SetParent(parent,false);
-            newObj.transform.localPosition =new Vector3(x, 0f, 13.5f);
+            newObj.transform.localPosition =new Vector3(x, 0f, zSpawnPosition);
         }
 	}
 }
