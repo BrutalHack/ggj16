@@ -8,6 +8,13 @@ public class BorderSpawner : MonoBehaviour {
     public float xAxisPosition = 5f;
     public float xOffset = 0.75f;
     public float zSpawnPosition = 13.5f;
+
+	public float minScale = 1f;
+	public float maxScale = 1.5f;
+
+	public float minSpawnDelay = 0.7f;
+	public float maxSpawnDelay = 1.4f;
+
     private float wait = 0;
 	// Use this for initialization
 	void Awake () {
@@ -29,7 +36,7 @@ public class BorderSpawner : MonoBehaviour {
         if(x==0){
             x=-1;
         }
-        float scale =Random.Range(0.5f, 1.0f);
+		float scale =Random.Range(minScale, maxScale);
         newObj.transform.localScale = new Vector3(scale*x, scale, scale);
     }
 	// Update is called once per frame
@@ -37,7 +44,7 @@ public class BorderSpawner : MonoBehaviour {
         wait -= Time.deltaTime;
         if (wait < 0f)
         {
-            wait = delay * Random.Range(0.7f, 1.4f); ;
+			wait = delay * Random.Range(minSpawnDelay, maxSpawnDelay); ;
             spawn(zSpawnPosition);
         }
 	}

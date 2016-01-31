@@ -3,7 +3,7 @@ using System.Collections;
 //https://pfonseca.com/swipe-detection-on-unity
 public class SwipeScript : MonoBehaviour
 {
-
+    private HallucinationSpawner halluSpawner;
 
     private float fingerStartTime = 0.0f;
     private Vector2 fingerStartPos = Vector2.zero;
@@ -11,10 +11,14 @@ public class SwipeScript : MonoBehaviour
     private bool isSwipe = false;
     private float minSwipeDist = 50.0f;
     private float maxSwipeTime = 0.5f;
+    void Awake()
+    {
+        halluSpawner = GetComponent<HallucinationSpawner>();
+    }
 
     void RemoveHallucination(Vector2 direction)
     {
-
+        halluSpawner.killHallu();
     }
     // Update is called once per frame
     void Update()
@@ -60,30 +64,6 @@ public class SwipeScript : MonoBehaviour
                             }
 
                             RemoveHallucination(direction);
-                            /*
-                            if (swipeType.x != 0.0f)
-                            {
-                                if (swipeType.x > 0.0f)
-                                {
-                                    // MOVE RIGHT
-                                }
-                                else
-                                {
-                                    // MOVE LEFT
-                                }
-                            }
-
-                            if (swipeType.y != 0.0f)
-                            {
-                                if (swipeType.y > 0.0f)
-                                {
-                                    // MOVE UP
-                                }
-                                else
-                                {
-                                    // MOVE DOWN
-                                }
-                            }*/
 
                         }
 
