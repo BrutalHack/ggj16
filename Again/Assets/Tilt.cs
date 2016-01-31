@@ -9,7 +9,6 @@ public class Tilt : MonoBehaviour
     void Start()
     {
         tiltee = GetComponent<Transform>();
-	
     }
 	
     // Update is called once per frame

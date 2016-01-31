@@ -7,19 +7,9 @@ public class ObstacleSpawner : MonoBehaviour {
     public float delay = 5f;
     public float maxXAxisOffset = 4f;
     public float zSpawnPosition=13.5f;
-    private float wait;
-	// Use this for initialization
-	void Start () {
-        wait = delay;
-	}
-    public void clearSpawns()
-    {
-        foreach(Transform child in parent){
-            Destroy(child.gameObject);
-        }
-    }
-	// Update is called once per frame
-	void Update () {
+    private float wait=0;
+	
+    void Update () {
         wait -= Time.deltaTime;
         if (wait < 0f)
         {
