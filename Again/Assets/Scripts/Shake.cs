@@ -11,11 +11,13 @@ public class Shake : MonoBehaviour {
 	private float speed;
 	private bool positiveDirektion;
 
-	// Use this for initialization
 	void Start () {
 		speed = startSpeed;
 	}
-	
+    void OnEnable()
+    {
+        speed = startSpeed;
+    }
 	// Update is called once per frame
 	void Update () {
 		frame++;

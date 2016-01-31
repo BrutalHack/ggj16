@@ -18,7 +18,7 @@ public class SwipeScript : MonoBehaviour
 
     void RemoveHallucination(Vector2 direction)
     {
-        halluSpawner.killHallu();
+        halluSpawner.killHallu(direction);
     }
     // Update is called once per frame
     void Update()
