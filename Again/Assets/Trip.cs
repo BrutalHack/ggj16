@@ -6,6 +6,7 @@ public class Trip : MonoBehaviour {
     
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("" + other.ToString());
         controller.Fail();
     }
 }
