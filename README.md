@@ -1,6 +1,6 @@
-# Same Procedure as Last Jam (MiniLD 62)
+# Same Procedure as Last Jam (Global Game Jam 2016)
 
-Game available for free at https://brutalhack.com/games/minild62/
+Game available for free at https://brutalhack.com/games/ggj16/
 
 # Game Description
 
