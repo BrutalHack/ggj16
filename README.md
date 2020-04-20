@@ -1,4 +1,4 @@
-# Flying Weapon (MiniLD 62)
+# Same Procedure as Last Jam (MiniLD 62)
 
 Game available for free at https://brutalhack.com/games/minild62/
 
