@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class BorderSpawner : MonoBehaviour {
+public class BorderSpawner : MonoBehaviour
+{
     public GameObject[] prefab;
     public Transform parent;
     public float delay = 2f;
@@ -9,43 +9,46 @@ public class BorderSpawner : MonoBehaviour {
     public float xOffset = 0.75f;
     public float zSpawnPosition = 13.5f;
 
-	public float minScale = 1f;
-	public float maxScale = 1.5f;
+    public float minScale = 1f;
+    public float maxScale = 1.5f;
 
-	public float minSpawnDelay = 0.7f;
-	public float maxSpawnDelay = 1.4f;
+    public float minSpawnDelay = 0.7f;
+    public float maxSpawnDelay = 1.4f;
 
-    private float wait = 0;
-	// Use this for initialization
-	void Awake () {
-        float pointer = -10;    
+    private float wait;
+
+    // Use this for initialization
+    private void Awake()
+    {
+        float pointer = -10;
         while (pointer < zSpawnPosition)
         {
             spawn(pointer);
             pointer += Random.Range(0.5f, 1.0f);
         }
-	}
-
-    void spawn(float zPos)
-    {
-        GameObject newObj = (GameObject)Instantiate(prefab[Random.Range(0,prefab.Length)], Vector3.zero, Quaternion.identity);
-        newObj.transform.SetParent(parent, false);
-
-        newObj.transform.localPosition = new Vector3(xAxisPosition + Random.Range(-xOffset, xOffset), 0f, zPos);
-        int x =Random.Range(0,2);
-        if(x==0){
-            x=-1;
-        }
-		float scale =Random.Range(minScale, maxScale);
-        newObj.transform.localScale = new Vector3(scale*x, scale, scale);
     }
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    private void Update()
+    {
         wait -= Time.deltaTime;
         if (wait < 0f)
         {
-			wait = delay * Random.Range(minSpawnDelay, maxSpawnDelay); ;
+            wait = delay * Random.Range(minSpawnDelay, maxSpawnDelay);
+            ;
             spawn(zSpawnPosition);
         }
-	}
+    }
+
+    private void spawn(float zPos)
+    {
+        var newObj = Instantiate(prefab[Random.Range(0, prefab.Length)], Vector3.zero, Quaternion.identity);
+        newObj.transform.SetParent(parent, false);
+
+        newObj.transform.localPosition = new Vector3(xAxisPosition + Random.Range(-xOffset, xOffset), 0f, zPos);
+        var x = Random.Range(0, 2);
+        if (x == 0) x = -1;
+        var scale = Random.Range(minScale, maxScale);
+        newObj.transform.localScale = new Vector3(scale * x, scale, scale);
+    }
 }

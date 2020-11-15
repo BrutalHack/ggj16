@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraFacingBillboard : MonoBehaviour
 {
-    private Camera camera;
+    private new Camera camera;
 
-    void Awake()
+    private void Awake()
     {
-        camera =Camera.main;
+        camera = Camera.main;
     }
-    void Update()
+
+    private void Update()
     {
         transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward,
             camera.transform.rotation * Vector3.up);

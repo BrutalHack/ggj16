@@ -1,39 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class HallucinationSpawner : MonoBehaviour {
-    private GameControl control;
+public class HallucinationSpawner : MonoBehaviour
+{
     public SpriteRenderer halluRenderer;
     public Sprite[] hallus;
     public float delay = 15;
-    private float wait;
     public float halluTime = 3;
+    private GameControl control;
     private float currentHallu;
-    private bool halluActive = false;
-	void Awake () {
-        wait = delay / 2;
-	}
-    void spawnHallu()
+    private bool halluActive;
+    private float wait;
+
+    private void Awake()
     {
-        control = GetComponent<GameControl>();
-        halluActive = true;
-        if(GameControl.demo)
-        {
-            currentHallu = halluTime/2;
-        }
-        else
-        {
-            currentHallu = halluTime;
-        }
-        halluRenderer.gameObject.SetActive(true);
-        halluRenderer.sprite = hallus[Random.Range(0, hallus.Length)];
+        wait = delay / 2;
     }
-    public void killHallu(Vector2 direction)
-    {   
-        halluActive = false;
-        halluRenderer.gameObject.SetActive(false);
-    }
-	void Update () {
+
+    private void Update()
+    {
         if (!halluActive)
         {
             wait -= Time.deltaTime;
@@ -49,14 +33,28 @@ public class HallucinationSpawner : MonoBehaviour {
             if (currentHallu < 0)
             {
                 if (GameControl.demo)
-                {
                     killHallu(Vector2.up);
-                }
                 else
-                {
                     control.Fail();
-                }
             }
         }
-	}
+    }
+
+    private void spawnHallu()
+    {
+        control = GetComponent<GameControl>();
+        halluActive = true;
+        if (GameControl.demo)
+            currentHallu = halluTime / 2;
+        else
+            currentHallu = halluTime;
+        halluRenderer.gameObject.SetActive(true);
+        halluRenderer.sprite = hallus[Random.Range(0, hallus.Length)];
+    }
+
+    public void killHallu(Vector2 direction)
+    {
+        halluActive = false;
+        halluRenderer.gameObject.SetActive(false);
+    }
 }

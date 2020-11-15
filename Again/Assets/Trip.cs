@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Trip : MonoBehaviour {
+public class Trip : MonoBehaviour
+{
     public GameControl controller;
-    
-    void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
         controller.Fail();
     }
